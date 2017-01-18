@@ -50,12 +50,13 @@
   * [Kartoteka](http://www.kartoteka.ru/vizual/)
   * [Musicalized](http://en.musicalized.com/full)
   * [NDex](http://www.ndexbio.org/)
+  * [OHDSI](http://www.ohdsi.org/)
   * [Pathway Commons](http://www.pathwaycommons.org)
   * [py2cytoscape](https://github.com/idekerlab/py2cytoscape)
   * [Rezza](http://rezza.io)
   * [Sainsbury Laboratory](http://www.tsl.ac.uk/) : [PINet](http://pinet.tsl.ac.uk/)
   * [Sotera Defense Solutions, Inc.](http://www.soteradefense.com/) : [Graphene](http://sotera.github.io/graphene/)
-  * [Steemit](https://steemit.com/) : SteemStars
+  * [Steemit](https://steemit.com/) : [SteemStars](https://steemstars.herokuapp.com/)
   * [Stringify](https://www.stringify.com/)
   * [Trace](https://trace.risingstack.com/)
   * [University of Cambridge](http://www.cam.ac.uk/) : [Intermine](http://intermine.org/)
@@ -90,6 +91,7 @@ The library was created at the [Donnelly Centre](http://thedonnellycentre.utoron
 ## Releases
 
 - 2.7
+ - [2.7.14](https://github.com/cytoscape/cytoscape.js/issues?q=milestone%3A2.7.14+is%3Aclosed)
  - [2.7.13](https://github.com/cytoscape/cytoscape.js/issues?q=milestone%3A2.7.13+is%3Aclosed)
  - [2.7.12](https://github.com/cytoscape/cytoscape.js/issues?q=milestone%3A2.7.12+is%3Aclosed)
  - [2.7.11](https://github.com/cytoscape/cytoscape.js/issues?q=milestone%3A2.7.11+is%3Aclosed)
