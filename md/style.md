@@ -148,7 +148,7 @@ Shape:
 
  * **`width`** : The width of the node's body.  This property can take on the special value `label` so the width is automatically based on the node's label.
  * **`height`** : The height of the node's body.  This property can take on the special value `label` so the height is automatically based on the node's label.
- * **`shape`** : The shape of the node's body; may be `rectangle`, `roundrectangle`, `ellipse`, `triangle`, `pentagon`, `hexagon`, `heptagon`, `octagon`, `star`, `diamond`, `vee`, `rhomboid`, or `polygon` (custom polygon specified via `shape-polygon-points`).  Note that each shape fits within the specified `width` and `height`, and so you may have to adjust `width` and `height` if you desire an equilateral shape (i.e. `width !== height` for several equilateral shapes).
+ * **`shape`** : The shape of the node's body; may be `rectangle`, `roundrectangle`, `cutrectangle`, `ellipse`, `triangle`, `pentagon`, `hexagon`, `heptagon`, `octagon`, `star`, `diamond`, `vee`, `rhomboid`, or `polygon` (custom polygon specified via `shape-polygon-points`).  Note that each shape fits within the specified `width` and `height`, and so you may have to adjust `width` and `height` if you desire an equilateral shape (i.e. `width !== height` for several equilateral shapes).
  * **`shape-polygon-points`** : A space-separated list of numbers ranging on [-1, 1], representing alternating x and y values (i.e. `x1 y1   x2 y2,   x3 y3 ...`).  This represents the points in the polygon for the node's shape.  The bounding box of the node is given by (-1, -1), (1, -1), (1, 1), (-1, 1).
 
 Background:
@@ -168,19 +168,36 @@ Padding:
 
 A padding defines an addition to a node's dimension.  For example, `padding` adds to a node's outer (i.e. total) width and height.  This can be used to add spacing around the label of `width: label; height: label;` nodes, or it can be used to add spacing between a compound node parent and its children.
 
-* **`padding`** : The amount of padding around all sides of the node.
+* **`padding`** : The amount of padding around all sides of the node. Either percentage or pixel value can be specified. For example, both `50%` and `50px` are acceptable values. By default, percentage padding is calculated as a percentage of node width.
+* **`padding-relative-to`** : Determines how padding is calculated if and only if the percentage unit is used. Accepts one of the keywords specified below.
+  * **`width`** : calculate padding as a percentage the node width.
+  * **`height`** : calculate padding as a percentage of the node height.
+  * **`average`** : calculate padding as a percentage of the average of the node width and height.
+  * **`min`** : calculate padding as a percentage of the minimum of the node width and height.
+  * **`max`** : calculate padding as a percentage of the maximum of the node width and height.
 
-Compound parent:
+Compound parent sizing:
 
  * **`compound-sizing-wrt-labels`** : Whether to include labels of descendants in sizing a compound node; may be `include` or `exclude`.
+ * **`min-width`** : Specifies the minimum (inner) width of the node's body for a compound parent node (e.g. `400px`).  If the biases for `min-width` do not add up to 100%, then the biases are normalised to a total of 100%.
+ * **`min-width-bias-left`** : When a compound node is enlarged by its `min-width`, this value specifies the percent of the extra width put on the left side of the node (e.g. `50%`).
+ * **`min-width-bias-right`** : When a compound node is enlarged by its `min-width`, this value specifies the percent of the extra width put on the right side of the node (e.g. `50%`).
+ * **`min-height`** : Specifies the minimum (inner) height of the node's body for a compound parent node (e.g. `400px`).  If the biases for `min-height` do not add up to 100%, then the biases are normalised to a total of 100%.
+ * **`min-height-bias-top`** : When a compound node is enlarged by its `min-height`, this value specifies the percent of the extra width put on the top side of the node (e.g. `50%`).
+ * **`min-height-bias-bottom`** : When a compound node is enlarged by its `min-height`, this value specifies the percent of the extra width put on the bottom side of the node (e.g. `50%`).
+
 
 
 
 ## Background image
 
-A background image may be applied to a node's body:
+A background image may be applied to a node's body.  The following properties support multiple values (space separated or array) with associated indices.
 
- * **`background-image`** : The URL that points to the image that should be used as the node's background.  PNG, JPG, and SVG are supported formats.  You may use a [data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) to use embedded images, thereby saving a HTTP request.
+ * **`background-image`** : The URL that points to the image that should be used as the node's background.  PNG, JPG, and SVG are supported formats.  
+  * You may use a [data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) to use embedded images, thereby saving a HTTP request.
+  * Can specify multiple background images by separating each image with a space (space delimited format), but if using a non-string stylesheet, then using arrays are preferred.
+    * The images will be applied to the node's body in the order given, layering one on top of each other.
+    * When specifying properties for multiple images, if the property for a given image is not provided, then the default value is used as fallback.
  * ** `background-image-crossorigin`**: All images are loaded with a [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-crossorigin) attribute which may be `anonymous` or `use-credentials`. The default is set to `anonymous`.
  * **`background-image-opacity`** : The opacity of the background image.
  * **`background-width`** : Specifies the width of the image.  A percent value (e.g. `50%`) may be used to set the image width relative to the node width.  If used in combination with `background-fit`, then this value overrides the width of the image in calculating the fitting --- thereby overriding the aspect ratio.  The `auto` value is used by default, which uses the width of the image.
@@ -189,7 +206,24 @@ A background image may be applied to a node's body:
  * **`background-repeat`** : Whether to repeat the background image; may be `no-repeat`, `repeat-x`, `repeat-y`, or `repeat`.
  * **`background-position-x`** : The x position of the background image, measured in percent (e.g. `50%`) or pixels (e.g. `10px`).
  * **`background-position-y`** : The y position of the background image, measured in percent (e.g. `50%`) or pixels (e.g. `10px`).
+ * **`background-width-relative-to`** : Changes whether the width is calculated relative to the width of the node or the width in addition to the padding; may be `inner` or `include-padding`. If not specified, `include-padding` is used by default.
+ * **`background-height-relative-to`** : Changes whether the height is calculated relative to the height of the node or the height in addition to the padding; may be `inner` or `include-padding`. If not specified, `include-padding` is used by default.
+
+The following properties apply to all images of a node:
+
  * **`background-clip`** : How background image clipping is handled; may be `node` for clipped to node shape or `none` for no clipping.
+
+The following is an example of valid background image styling using JSON. The example images are taken from Wikimedia Commons with the Creative Commons license.
+```
+{
+  'background-image': [
+    'https://upload.wikimedia.org/wikipedia/commons/b/b4/High_above_the_Cloud_the_Sun_Stays_the_Same.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Pigeon_silhouette_4874.svg/1000px-Pigeon_silhouette_4874.svg.png'
+  ],
+  'background-fit': 'cover cover',
+  `background-image-opacity`: 0.5
+}
+```
 
 
 
@@ -212,6 +246,7 @@ These properties affect the styling of an edge's line:
 
  * **`width`** : The width of an edge's line.
  * **`curve-style`** : The curving method used to separate two or more edges between two nodes; may be [`haystack`](#style/haystack-edges) (default, very fast, bundled straight edges for which loops and compounds are unsupported), [`bezier`](#style/bezier-edges) (bundled curved edges), [`unbundled-bezier`](#style/unbundled-bezier-edges) (curved edges for use with manual control points), or [`segments`](#style/segments-edges) (a series of straight lines).  Note that `haystack` edges work best with `ellipse`, `rectangle`, or similar nodes.  Smaller node shapes, like `triangle`, will not be as aesthetically pleasing.  Also note that edge arrows are unsupported for `haystack` edges.
+ * **`edge-pointing-direction`** : Indicates where the end points of an edge should be directed.  With value `inside`, each end point (e.g. arrow) of the edge points towards the middle of the connected node.  With value `outside`, each end point of the edge points towards the intersection of a line formed between the source node position and the target node position.  The `outside` value is useful for bundling the arrows of edges together, and it is also useful for large nodes (like compounds) as `inside` edges can tend to be impossible to draw for larger nodes.
  * **`line-color`** : The colour of the edge's line.
  * **`line-style`** : The style of the edge's line; may be `solid`, `dotted`, or `dashed`.
 
@@ -224,6 +259,16 @@ For automatic, bundled bezier edges (`curve-style: bezier`):
  * **`control-point-distance`** : A single value that overrides `control-point-step-size` with a manual value.  Because it overrides the step size, bezier edges with the same value will overlap.  Thus, it's best to use this as a one-off value for particular edges if need be.
  * **`control-point-weight`** : A single value that weights control points along the line from source to target.  The value usually ranges on [0, 1], with 0 towards the source node and 1 towards the target node --- but larger or smaller values can also be used.
  * **`edge-distances`** : With value `intersection` (default), the line from source to target for `control-point-weight` is from the outside of the source node's shape to the outside of the target node's shape.  With value `node-position`, the line is from the source position to the target position.  The `node-position` option makes calculating edge points easier --- but it should be used carefully because you can create invalid points that `intersection` would have automatically corrected.
+
+
+## Loop edges
+
+For loops (i.e. same source and target):
+
+ * **`loop-direction`** : Determines the angle that loops extend from the node in cases when the source and target node of an edge is the same.  The angle is specified from the 12 o'clock position and it progresses clockwise for increasing positive values. The default is `-45deg` (extending to the upper left).
+ * **`loop-sweep`** : Determines the angle between the leaving and returning edges in loops. Positive values result in clockwise looping and negative values result in counter-clockwise looping. Default is `-90deg`.
+
+Note that loops may only be `bezier` or `unbundled-bezier` for their `curve-style`.
 
 
 ## Unbundled bezier edges
@@ -256,8 +301,9 @@ For edges made of several straight lines (`curve-style: segments`):
 ## Edge arrow
 
  * **`<pos>-arrow-color`** : The colour of the edge's source arrow.
- * **`<pos>-arrow-shape`** : The shape of the edge's source arrow; may be `tee`, `triangle`, `triangle-tee`, `triangle-backcurve`, `square`, `circle`, `diamond`, or `none`.
+ * **`<pos>-arrow-shape`** : The shape of the edge's source arrow; may be `tee`, `triangle`, `triangle-tee`, `triangle-cross`, `triangle-backcurve`, `square`, `circle`, `diamond`, or `none`.
  * **`<pos>-arrow-fill`** : The fill state of the edge's source arrow; may be `filled` or `hollow`.
+ * **`arrow-scale`** : Scaling for the arrow size; may be any number >= 0.
 
 For each edge arrow property above, replace `<pos>` with one of
 
@@ -267,6 +313,25 @@ For each edge arrow property above, replace `<pos>` with one of
   * `mid-target`: Pointing towards the target node, at the middle of the edge.
 
 Only mid arrows are supported on haystack edges.
+
+
+## Edge endpoints
+
+`source-endpoint` & `target-endpoint` : Specifies the endpoint of the source side of the edge and the target side of the edge, respectively.  There are several options for how those properties can be set:
+
+- A special, named value may be used.
+  - `outside-to-node` (default) indicates that the edge should be placed automatically to point towards the node's position and be placed on the outside of the node's shape.
+  - `inside-to-node` indicates the edge should go all the way inside the node and point directly on the node's position.  This is the same as specifying `0 0`.
+  - `outside-to-line` indicates the edge endpoint should be placed outside the node's shape where it would intersect the imaginary line from the source position to the target position.  This value is useful for automatically  avoiding invalid cases for bezier edges, especially with compound nodes.
+- Two numbers may specify the endpoint.  The numbers indicate a position relative to the source node's position.  The numbers can be specified as percent values (e.g. `50%`, which are relative to the node's width and height respectively) or as absolute distances (e.g. `100px` or `2em`).  
+- A single angle value (e.g. `90deg` or `1.57rad`) may specify that the endpoint should be placed at where the line formed from the node's position with the specified angle would intersect the node's shape.  The angle starts at 12 o'clock and progresses clockwise.
+
+The endpoints for edges can be shifted away from the source and target node:
+
+ * **`source-distance-from-node`** : A value that shifts the edge away from the source node (default `0px`).
+ * **`target-distance-from-node`** : A value that shifts the edge away from the target node (default `0px`).
+
+Endpoint modification is not supported for `curve-style: haystack` edges for performance reasons.
 
 
 ## Visibility
@@ -288,6 +353,11 @@ Only mid arrows are supported on haystack edges.
   * An `opacity: 0` element is interactive.
 * **`z-index`** : An integer value that affects the relative draw order of elements.  In general, an element with a higher `z-index` will be drawn on top of an element with a lower `z-index`.  Note that edges are under nodes despite `z-index`, except when necessary for compound nodes.
 
+Elements are drawn in a specific order based on compound depth (low to high), the element type (typically nodes above edges), and z-index (low to high).  These styles affect the ordering:
+
+* **`z-compound-depth`** : May be `bottom`, `orphan`, `auto` (default), or `top`.  The first drawn is `bottom`, the second is `orphan`, which is the same depth as the root of the compound graph, followed by the default of `auto` which draws in depth order from root to leaves of the compound graph.  The last drawn is `top`.
+* **`z-index-compare`**: May be `auto` (default) or `manual`.  The `auto` setting draws edges under nodes, whereas `manual` ignores this convention and draws solely based on the `z-index` value.
+* **`z-index`** : An integer value that affects the relative draw order of elements.  In general, an element with a higher `z-index` will be drawn on top of an element with a lower `z-index` within the same depth.
 
 
 ## Labels
@@ -310,8 +380,8 @@ Basic font styling:
 
 Wrapping text:
 
- * **`text-wrap`** : A wrapping style to apply to the label text; may be `none` for no wrapping (including manual newlines: `\n`) or `wrap` for manual and/or autowrapping.
- * **`text-max-width`** : The maximum width for wrapped text, applied when `text-wrap` is set to `wrap`.  For only manual newlines (i.e. `\n`), set a very large value like `1000px` such that only your newline characters would apply.
+ * **`text-wrap`** : A wrapping style to apply to the label text; may be `none` for no wrapping (including manual newlines: `\n`), `wrap` for manual and/or autowrapping or `ellipsize` to truncate the string and append '...' based on `text-max-width`.
+ * **`text-max-width`** : The maximum width for wrapped text, applied when `text-wrap` is set to `wrap` or `ellipsize`.  For only manual newlines (i.e. `\n`), set a very large value like `1000px` such that only your newline characters would apply.
 
 Node label alignment:
 
@@ -354,6 +424,7 @@ Background:
  * **`text-background-color`** : A colour to apply on the text background.
  * **`text-background-opacity`** : The opacity of the label background; the background is disabled for `0` (default value).
  * **`text-background-shape`** : The shape to use for the label background, can be `rectangle` or `roundrectangle`.
+ * **`text-background-padding`** : A padding on the background of the label (e.g `5px`); zero padding is used by default.
 
 Border:
 
@@ -388,7 +459,35 @@ These properties allow for the creation of overlays on top of nodes or edges, an
  * **`transition-property`** : A comma separated list of style properties to animate in this state.
  * **`transition-duration`** : The length of the transition in seconds (e.g. `0.5s`).
  * **`transition-delay`** : The length of the delay in seconds before the transition occurs (e.g. `250ms`).
- * **`transition-timing-function`** : An easing function that controls the animation progress curve; may be `linear` (default), `spring( tension, friction )` (the [demo](http://codepen.io/anon/pen/ZbzbbZ) has details for parameter values), `cubic-bezier( x1, y1, x2, y2 )` (the [demo](http://cubic-bezier.com) has details for parameter values), `ease`, `ease-in`, `ease-out`, `ease-in-out`, `ease-in-sine`, `ease-out-sine`, `ease-in-out-sine`, `ease-in-quad`, `ease-out-quad`, `ease-in-out-quad`,  `ease-in-cubic`, `ease-out-cubic`, `ease-in-out-cubic`,  `ease-in-quart`, `ease-out-quart`, `ease-in-out-quart`,  `ease-in-quint`, `ease-out-quint`, `ease-in-out-quint`,  `ease-in-expo`, `ease-out-expo`, `ease-in-out-expo`,  `ease-in-circ`, `ease-out-circ`, `ease-in-out-circ` (a [visualisation](http://easings.net/) of easings serves as a reference).
+ * **`transition-timing-function`** : An easing function that controls the animation progress curve; may be one of the following values.  A [visualisation](http://easings.net/) of easings serves as a reference.
+   * `linear` (default),
+   * `spring( tension, friction )` (the [demo](http://codepen.io/anon/pen/ZbzbbZ) has details for parameter values),
+   * `cubic-bezier( x1, y1, x2, y2 )` (the [demo](http://cubic-bezier.com) has details for parameter values),
+   * `ease`,
+   * `ease-in`,
+   * `ease-out`,
+   * `ease-in-out`,
+   * `ease-in-sine`,
+   * `ease-out-sine`,
+   * `ease-in-out-sine`,
+   * `ease-in-quad`,
+   * `ease-out-quad`,
+   * `ease-in-out-quad`,  
+   * `ease-in-cubic`,
+   * `ease-out-cubic`,
+   * `ease-in-out-cubic`,  
+   * `ease-in-quart`,
+   * `ease-out-quart`,
+   * `ease-in-out-quart`,  
+   * `ease-in-quint`,
+   * `ease-out-quint`,
+   * `ease-in-out-quint`,
+   * `ease-in-expo`,
+   * `ease-out-expo`,
+   * `ease-in-out-expo`,  
+   * `ease-in-circ`,
+   * `ease-out-circ`,
+   * `ease-in-out-circ`.
 
 
 ## Core

@@ -14,6 +14,8 @@ var cy = cytoscape({
 });
 ```
 
+Note that in order to guarantee custom font usage, the fonts in question must be loaded before Cytoscape is initialised.
+
 The following sections go over the options in more detail.
 
 
@@ -65,7 +67,7 @@ An instance of Cytoscape.js has a number of options that can be set on initialis
 ### Very commonly used options
 
 <span id="init-opts/container"></span>
-**`container`** : A HTML DOM element in which the graph should be rendered.  This is unspecified if Cytoscape.js is run headlessly.
+**`container`** : A HTML DOM element in which the graph should be rendered.  This is unspecified if Cytoscape.js is run headlessly.  The container is expected to be an empty div; the visualisation owns the div.
 
 <span id="init-opts/elements"></span>
 **`elements`** : An array of [elements specified as plain objects](#notation/elements-json).  For convenience, this option can alternatively be specified as a promise that resolves to the elements JSON.

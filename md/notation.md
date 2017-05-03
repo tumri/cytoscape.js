@@ -144,19 +144,12 @@ cytoscape({
     name: 'preset'
   },
 
-  // so we can see the ids etc
+  // so we can see the ids
   style: [
     {
       selector: 'node',
       style: {
         'content': 'data(id)'
-      }
-    },
-
-    {
-      selector: ':parent',
-      style: {
-        'background-opacity': 0.6
       }
     }
   ]

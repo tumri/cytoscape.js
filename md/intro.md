@@ -31,10 +31,12 @@
  * Well maintained, with only a sliver of active bug time (i.e. minimised time to bugfix)
  * Used by
   * [Abasy Atlas](http://abasy.ccg.unam.mx/)
-  * [Agile Protein Interactomes DataServer](Agile Protein Interactomes DataServer)
+  * [Active Value Advisors](http://www.activevalue.eu/) : [How-4](http://www.how-4.com/)
+  * [Agile Protein Interactomes DataServer](http://apid.dep.usal.es/)
   * [Aras](http://www.aras.com/)
   * [Avenue](https://avenue-2p0.herokuapp.com/)
   * [BioGRID](http://thebiogrid.org/)
+  * [BS CytoGraph](www.brettjsettle.site/graph)
   * [Cray Inc.](http://www.cray.com)
   * [CyNetShare](http://cynetshare.ucsd.edu/)
   * [DARPA](http://www.darpa.mil)
@@ -46,18 +48,23 @@
   * [Graphlytic](http://graphlytic.sk/)
   * [ICSI Haystack Project](https://haystack.mobi/panopticon/)
   * [InfoTrack](http://www.infotrack.com.au/)
+  * [The Interactive Metal Genres Graph](https://www.boundbymetal.com/)
   * [Kartoteka](http://www.kartoteka.ru/vizual/)
   * [Musicalized](http://en.musicalized.com/full)
   * [NDex](http://www.ndexbio.org/)
   * [OHDSI](http://www.ohdsi.org/)
   * [Pathway Commons](http://www.pathwaycommons.org)
   * [py2cytoscape](https://github.com/idekerlab/py2cytoscape)
+  * [Rezza](http://rezza.io)
   * [Sainsbury Laboratory](http://www.tsl.ac.uk/) : [PINet](http://pinet.tsl.ac.uk/)
   * [Sotera Defense Solutions, Inc.](http://www.soteradefense.com/) : [Graphene](http://sotera.github.io/graphene/)
   * [Steemit](https://steemit.com/) : [SteemStars](https://steemstars.herokuapp.com/)
   * [Stringify](https://www.stringify.com/)
+  * [Threat Crowd](https://www.threatcrowd.org/)
   * [Trace](https://trace.risingstack.com/)
   * [University of Cambridge](http://www.cam.ac.uk/) : [Intermine](http://intermine.org/)
+  * [University of Southern California, San Diego](http://www.ucsd.edu/) : [Visualization of structurally related compounds in Mass Spectrometry with Molecular Networks at GNPS](http://gnps.ucsd.edu/ProteoSAFe/result.jsp?view=network_displayer&componentindex=67&task=c95481f0c53d42e78a61bf899e9f9adb#%7B%7D)
+  * [Virginia Tech](http://www.vt.edu/index.html) [T. M. Murali's Research Group](http://bioinformatics.cs.vt.edu/~murali/) : [GraphSpace](http://graphspace.org)
   * [Visual Interaction GmbH](http://www.mygaze.com/)
 
 
@@ -87,6 +94,8 @@ The library was created at the [Donnelly Centre](http://thedonnellycentre.utoron
 
 ## Releases
 
+- 3.1
+ - [3.1.0](https://github.com/cytoscape/cytoscape.js/issues?q=milestone%3A3.1.0+is%3Aclosed)
 - 3.0
  - [3.0.1](https://github.com/cytoscape/cytoscape.js/issues?q=milestone%3A3.0.1+is%3Aclosed)
  - [3.0.0](https://github.com/cytoscape/cytoscape.js/issues?q=milestone%3A3.0.0+is%3Aclosed)

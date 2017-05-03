@@ -88,6 +88,8 @@ These events are custom to Cytoscape.js, and they occur on the core.
  * `layoutready` : when a layout has set initial positions for all the nodes (but perhaps not final positions)
  * `layoutstop` : when a layout has finished running completely or otherwise stopped running
  * `ready` : when a new instance of Cytoscape.js is ready to be interacted with
+ * `destroy` : when the instance of Cytoscape.js was explicitly destroyed by calling `.destroy()`.
  * `render` : when the viewport is (re)rendered
  * `pan` : when the viewport is panned
  * `zoom` : when the viewport is zoomed
+ * `resize` : when the viewport is resized (usually by calling `cy.resize()`, a `window` resize, or toggling a class on the Cytoscape.js div)
