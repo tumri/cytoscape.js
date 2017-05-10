@@ -27578,7 +27578,7 @@ util.debounce = function( func, wait, options ){ // ported lodash debounce funct
 module.exports = util;
 
 },{"../is":91,"../window":116}],115:[function(_dereq_,module,exports){
-module.exports = "snapshot-9441f951a4-1494447115535";
+module.exports = "3.1.0";
 
 },{}],116:[function(_dereq_,module,exports){
 module.exports = ( typeof window === 'undefined' ? null : window ); // eslint-disable-line no-undef
