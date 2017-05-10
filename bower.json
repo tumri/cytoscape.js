@@ -5,7 +5,7 @@
   "homepage": "http://js.cytoscape.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tumri/cytoscape.js.git"
+    "url": "https://github.com/cytoscape/cytoscape.js.git"
   },
   "authors": [
     {
@@ -54,7 +54,7 @@
     "bower",
     "jquery"
   ],
-  "main": "dist/va-cytoscape.js",
+  "main": "dist/cytoscape.js",
   "ignore": [
     "documentation",
     "src",
