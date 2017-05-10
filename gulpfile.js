@@ -204,7 +204,7 @@ gulp.task('build-unmin', ['version'], function(){
 
 gulp.task('build-min', ['version'], function(){
   return getBrowserify({
-    file: 'cytoscape.min.js',
+    file: 'va-cytoscape.min.js',
     minify: true
   })
     .pipe( gulp.dest('build') )
@@ -256,8 +256,8 @@ gulp.task('refs', function(next){
 
 gulp.task('zip', ['version', 'build'], function(){
   return gulp.src([
-    'build/cytoscape.js',
-    'build/cytoscape.min.js',
+    'build/va-cytoscape.js',
+    'build/va-cytoscape.min.js',
     'LICENSE'
   ])
     .pipe( $.zip('cytoscape.js-' + version + '.zip') )
@@ -309,8 +309,8 @@ gulp.task('docsver', ['version'], function(){
 
 gulp.task('docsjs', ['version', 'build'], function(){
   return gulp.src([
-    'build/cytoscape.js',
-    'build/cytoscape.min.js'
+    'build/va-cytoscape.js',
+    'build/va-cytoscape.min.js'
   ])
     .pipe( gulp.dest('documentation/js') )
 
@@ -321,7 +321,7 @@ gulp.task('docsjs', ['version', 'build'], function(){
 });
 
 gulp.task('docsdl', ['version', 'zip'], function(){
-  return gulp.src('build/cytoscape.js-' + version + '.zip')
+  return gulp.src('build/va-cytoscape.js-' + version + '.zip')
     .pipe( gulp.dest('documentation/download') )
   ;
 });
@@ -329,7 +329,7 @@ gulp.task('docsdl', ['version', 'zip'], function(){
 gulp.task('snapshotpush', ['docsdl'], function(){
   return gulp.src('')
     .pipe( $.shell( replaceShellVars([
-      '$RM $TEMP_DIR/cytoscape.js',
+      '$RM $TEMP_DIR/va-cytoscape.js',
       '$GIT clone -b gh-pages https://github.com/cytoscape/cytoscape.js.git $TEMP_DIR/cytoscape.js',
       '$CP $DOC_DIR/$DL_DIR/* $TEMP_DIR/cytoscape.js/$DL_DIR',
     ]) ) )
@@ -338,7 +338,7 @@ gulp.task('snapshotpush', ['docsdl'], function(){
       '$GIT add -A',
       '$GIT commit -a -m "Adding snapshot build"',
       '$GIT push origin'
-    ]), { cwd: $TEMP_DIR + '/cytoscape.js' } ) )
+    ]), { cwd: $TEMP_DIR + '/va-cytoscape.js' } ) )
   ;
 });
 
@@ -444,7 +444,7 @@ gulp.task('pkgver', ['version'], function(){
 gulp.task('dist', ['build'], function(){
   return gulp.src([
     'build/cytoscape.js',
-    'build/cytoscape.min.js'
+    'build/va-cytoscape.min.js'
   ])
     .pipe( gulp.dest('dist') )
   ;
