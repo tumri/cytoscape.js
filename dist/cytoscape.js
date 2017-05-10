@@ -2,7 +2,7 @@
 
 /*!
 
-Cytoscape.js snapshot-9441f951a4-1494447115535 (MIT licensed)
+Cytoscape.js 3.1.0 (MIT licensed)
 
 Copyright (c) The Cytoscape Consortium
 
@@ -27434,7 +27434,7 @@ var raf = (function(){
       return function( fn ){ window.msRequestAnimationFrame( fn ); };
     }
   }
-  
+
   return function( fn ){
     if( fn ){
       setTimeout( function(){
