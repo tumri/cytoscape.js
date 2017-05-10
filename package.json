@@ -6,7 +6,7 @@
   "homepage": "http://js.cytoscape.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cytoscape/cytoscape.js.git"
+    "url": "https://github.com/tumri/cytoscape.js.git"
   },
   "bugs": {
     "url": "https://github.com/cytoscape/cytoscape.js/issues"
