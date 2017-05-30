@@ -1,1 +1,1 @@
-module.exports = "3.1.1";
+module.exports = "snapshot-56ffcb49fa-1496148099615";
