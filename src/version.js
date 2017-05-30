@@ -1,1 +1,1 @@
-module.exports = "snapshot-3107507cbf-1496153253599";
+module.exports = "snapshot-05405a64de-1496156948011";
