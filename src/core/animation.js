@@ -290,7 +290,7 @@ var corefn = ({
         var startPos = ani_p.startPosition;
         var endPos = ani_p.position;
 
-        if( endPos && isEles ){
+        if( endPos && isEles && !self.locked() ){
           var pos = self.position();
 
           if( valid( startPos.x, endPos.x ) ){
@@ -688,6 +688,10 @@ var corefn = ({
     };
 
     function getEasedValue( type, start, end, percent, easingFn ){
+      if( percent === 1 ){
+        return end;
+      }
+
       var val = easingFn( start, end, percent );
 
       if( type == null ){
