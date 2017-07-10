@@ -2,7 +2,7 @@
 
 /*!
 
-Cytoscape.js 3.1.2 (MIT licensed)
+Cytoscape.js 3.1.2_PATCHED (MIT licensed)
 
 Copyright (c) The Cytoscape Consortium
 
@@ -18794,7 +18794,7 @@ CRp.drawNode = function( context, node, shiftToOriginWithBb, drawLabel ){
 
       // get image, and if not loaded then ask to redraw when later loaded
       image[i] = this.getCachedImage( url, bgImgCrossOrigin, function(){
-        node.rtrigger('background');
+        node.rtrigger('style');
       } );
     }
   }
@@ -18883,7 +18883,7 @@ CRp.drawNode = function( context, node, shiftToOriginWithBb, drawLabel ){
   var totalCompleted = 0;
 
   for( var i = 0; i < numImages; i++ ){
-    if( urlDefined[i] && image[i].complete && !image[i].error ){
+    if( urlDefined[i] && image[i].complete && !image[i].error && !(image[i].height === 0 || image[i].width === 0)){
       totalCompleted++;
       this.drawInscribedImage( context, image[i], node, i );
     }
@@ -27470,7 +27470,7 @@ var raf = (function(){
       return function( fn ){ window.msRequestAnimationFrame( fn ); };
     }
   }
-  
+
   return function( fn ){
     if( fn ){
       setTimeout( function(){
